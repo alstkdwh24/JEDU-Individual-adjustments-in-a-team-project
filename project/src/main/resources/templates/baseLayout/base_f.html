@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <th:block th:fragment="setContent(content)">
 
 <head>
@@ -72,9 +72,7 @@
 			
 			              <button type="button" class="section__sub__menu" value="GAME"><img src="/img/mouse_icon.png" alt="마우스아이콘"> GAME</button>
 			              <div class="sub__menu__list">
-			                <a href="/command/lookup" class="small__menu" data-title="게임 컨텐츠 조회" >게임 컨텐츠 조회</a>
 			           		<a href="/command/gameList" class="small__menu" data-title="게임 컨텐츠 조회" >게임 컨텐츠 조회</a>
-			                	<a href="/user/game" class="small__menu" data-title="학습하기">학습하기</a>
 			                <a href="/user/study_fun" class="small__menu" data-title="학습하기">GAME</a>
 			              </div>
 			

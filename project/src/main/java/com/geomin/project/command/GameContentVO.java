@@ -17,6 +17,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class GameContentVO {
 
+
+
 	private Integer game_no;
 	private String game_title;
 	private Integer game_target_level;
@@ -25,10 +27,11 @@ public class GameContentVO {
 	private String game_content;
 	private Integer game_count;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date game_sub_startDate;
-
 	private String game_sub_endDate;
-	private String game_regdate;
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private String game_sub_regDate;
+
 	private String del_check;
 	private Integer user_no;
 	
@@ -40,7 +43,17 @@ public class GameContentVO {
 	private int cnt;
 	private String price_sum;
 
+	public GameContentVO(String game_sub_regDate){
+		this.game_sub_regDate=game_sub_regDate;
+	}
 
-		
+	public String getGame_sub_regDate_two(){
+		String [] game_regDate =game_sub_regDate.split(" ");
+		String game_sub_regDate_two=game_regDate[0];
+		return game_sub_regDate_two;
+	}
+
+
+
 
 }

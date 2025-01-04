@@ -18,6 +18,7 @@
 	  		DEL_CHECK
 	  	) VALUES (
 	  		#{game_title},
+
 	  		#{game_target_level},
 	  		#{game_price},
 	  		#{game_discount_price},
@@ -52,9 +53,9 @@
   	  </insert>
   	  
   	  <!-- 게임컨텐츠 조회 -->
-  	 <!--  <select id="getList" resultType="GameContentVO">
-  	  	SELECT * FROM GAME_CONTENT
-  	  </select> -->
+<!--  	   <select id="getList" resultType="GameContentVO">-->
+<!--  	  	SELECT * FROM GAME_CONTENT-->
+<!--  	  </select>-->
   	   <!-- Result Maps -->
     <resultMap id="gameResultMap" type="GameContentVO">
         <id property="game_no" column="GAME_NO"/>
