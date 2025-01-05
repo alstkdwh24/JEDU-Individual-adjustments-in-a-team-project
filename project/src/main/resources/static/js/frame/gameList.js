@@ -41,6 +41,7 @@ for (var i = 0; i < b12.length; i++) {
   });
 }
 
+
 /* 버튼 클릭 */
 
 var game__content__page = document.getElementById("game__content__page");
@@ -52,3 +53,5 @@ for (var i = 0; i < page__num.length; i++) {
   this.className += " page__active";
   });
 }
+
+

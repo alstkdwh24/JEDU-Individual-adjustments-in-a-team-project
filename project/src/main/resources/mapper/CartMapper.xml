@@ -8,6 +8,10 @@
 	<insert id="addtoCart">
 		INSERT INTO CART (USER_NO, GAME_NO) values (#{user_no}, #{game_no})
 	</insert>
+
+	<insert id="purchase_resist">
+		INSERT INTO CART (USER_NO, GAME_NO) values (#{user_no}, #{game_no});
+	</insert>
 	
 	<!-- 장바구니 중복 조회-->
 	<select id="checkCart" resultType="Integer">

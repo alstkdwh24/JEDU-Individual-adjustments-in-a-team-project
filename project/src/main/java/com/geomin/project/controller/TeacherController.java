@@ -78,7 +78,7 @@ public class TeacherController {
 		UserVO vo = (UserVO)session.getAttribute("vo");
 		
 		// 내가 만든 숙제 조회
-		ArrayList<HomeWorkVO> list = teacherService.getMyHomework(vo.user_no);
+		ArrayList<HomeWorkVO> list = teacherService.getMyHomework(String.valueOf(vo.user_no));
 		model.addAttribute("homework", list);
 		
 		// 내가 만든 그룹 조회
@@ -98,7 +98,7 @@ public class TeacherController {
 		UserVO vo = (UserVO)session.getAttribute("vo");
 		
 		// 내가 만든 숙제 조회
-		ArrayList<HomeWorkVO> list = teacherService.getMyHomework(vo.user_no);
+		ArrayList<HomeWorkVO> list = teacherService.getMyHomework(String.valueOf(vo.user_no));
 		model.addAttribute("homework", list);
 		
 		// 숙제 제출한 사람들 가져오기
@@ -116,7 +116,7 @@ public class TeacherController {
 		// 이 작업들은, 내가 구매한 학습컨텐츠 가져오려고 하는거임
 		HttpSession session = request.getSession();
 		UserVO vo =(UserVO) session.getAttribute("vo");
-		int user_no = Integer.parseInt(vo.user_no);
+		int user_no = Integer.parseInt(String.valueOf(vo.user_no));
 		
 		// 이미지 포함
 		ArrayList<PurchaseVO> purListWithImg = cartService.purchaseHistoryWithImg(user_no);
@@ -210,7 +210,7 @@ public class TeacherController {
 		
 		HttpSession session = request.getSession();
 		UserVO vo =(UserVO) session.getAttribute("vo");
-		int user_no = Integer.parseInt(vo.user_no);
+		int user_no = vo.user_no;
 		
 		// 이미지 포함
 		ArrayList<PurchaseVO> purListWithImg = cartService.purchaseHistoryWithImg(user_no);

@@ -24,7 +24,7 @@
 	  		#{game_discount_price},
 	  		#{game_content},
 	  		#{game_count},
-	  		#{game_sub_startDate},
+	  		#{game_sub_regDate},
 	  		#{game_sub_endDate},
 	  		#{del_check}
 	  	)

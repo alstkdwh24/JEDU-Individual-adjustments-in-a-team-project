@@ -6,9 +6,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
+import com.geomin.project.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,6 @@ import com.geomin.project.cart.service.CartService;
 import com.geomin.project.command.CartVO;
 import com.geomin.project.command.GameContentVO;
 import com.geomin.project.command.PageVO;
-import com.geomin.project.command.PageVOmember;
 import com.geomin.project.command.PageVOquestion;
 import com.geomin.project.command.PurchaseVO;
 import com.geomin.project.command.QnaVO;
@@ -33,8 +32,6 @@ import com.geomin.project.util.Criteria;
 import com.geomin.project.util.CriteriaQuestion;
 import com.geomin.project.util.JCriteria;
 import com.geomin.project.util.JPageVO;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/command")
@@ -64,24 +61,32 @@ public class CommandController {
 	// 게임 컨텐츠 목록 - 일반 사용자 / 선생님
 	@GetMapping("/gameList")
 	public String gameList(HttpServletRequest request, Model model,
-			JCriteria JCri /* @RequestParam("user_no") int user_no, @RequestParam("game_no") int game_no */) {
-		ArrayList<GameContentVO> list = commandService.getList(JCri);
+						   JCriteria JCri, HttpSession session /* @RequestParam("user_no") int user_no, @RequestParam("game_no") int game_no */) {
+        ArrayList<GameContentVO> list = commandService.getList(JCri);
 //		cartService.addtoCart(user_no, game_no);
 
-		List<GameContentVO> pagesubList = safeList(list, 0, 10);
-		
-		List<GameContentVO> pagesubListTwo = safeList(list, 5, 10);
-	
-		int total = commandService.getTotal(JCri);
-		JPageVO JPageVO = new JPageVO(JCri, total);
+		UserVO vo = (UserVO) session.getAttribute("vo");
+		int user_no = vo.user_no;
+		model.addAttribute("user_no",user_no);
 
-		model.addAttribute("JPageVO", JPageVO);
-		model.addAttribute("pagesubList", pagesubList);
-		model.addAttribute("pagesubListTwo", pagesubListTwo);
-		
+        String roles = (String) session.getAttribute("user");
+        model.addAttribute("userSession", roles);
 
-		return "command/gameList";
-	}
+
+        List<GameContentVO> pagesubList = safeList(list, 0, 10);
+
+        List<GameContentVO> pagesubListTwo = safeList(list, 5, 10);
+
+        int total = commandService.getTotal(JCri);
+        JPageVO JPageVO = new JPageVO(JCri, total);
+
+        model.addAttribute("JPageVO", JPageVO);
+        model.addAttribute("pagesubList", pagesubList);
+        model.addAttribute("pagesubListTwo", pagesubListTwo);
+
+
+        return "command/gameList";
+    }
 
 	public static List<GameContentVO> safeList(List<GameContentVO> list, int fromIndex, int toIndex) {
 		int actualToIndex = Math.min(list.size(), toIndex);
@@ -118,7 +123,7 @@ public class CommandController {
 
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("vo");
-		int user_no = Integer.parseInt(vo.user_no);
+		int user_no = vo.user_no;
 
 		ArrayList<PurchaseVO> purList = cartService.purchaseHistory(user_no);
 		model.addAttribute("purList", purList);
@@ -137,7 +142,7 @@ public class CommandController {
 		UserVO vo = (UserVO) session.getAttribute("vo");
 		model.addAttribute("vo", vo);
 
-		int user_no = Integer.parseInt(vo.user_no);
+		int user_no = vo.user_no;
 		ArrayList<CartVO> cartList = cartService.getListCart(user_no);
 
 		if (cartList != null) {
@@ -164,7 +169,7 @@ public class CommandController {
 		UserVO vo = (UserVO) session.getAttribute("vo");
 		model.addAttribute("vo", vo);
 
-		int user_no = Integer.parseInt(vo.user_no);
+		int user_no = vo.user_no;
 		ArrayList<CartVO> cartList = cartService.getListCart(user_no);
 
 		if (cartList != null) {
@@ -189,7 +194,7 @@ public class CommandController {
 
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("vo");
-		int user_no = Integer.parseInt(userVO.getUser_no());
+		int user_no = userVO.user_no;
 		model.addAttribute("userVO", userVO);
 
 		ArrayList<QnaVO> list = userService.getQnaList(user_no, criteria);

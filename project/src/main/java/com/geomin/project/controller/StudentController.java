@@ -85,7 +85,7 @@ public class StudentController {
 
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("vo");
-		int user_no = Integer.parseInt(vo.user_no);
+		int user_no = vo.user_no;
 
 		// 그룹스터디 내용 리스트
 		ArrayList<StudyGroupVO> list = studentService.getList(cri);
@@ -105,7 +105,7 @@ public class StudentController {
 
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("vo");
-		int user_no = Integer.parseInt(vo.user_no);
+		int user_no = vo.user_no;
 		ArrayList<HomeWorkVO> hwList = studentService.getHomeworkList(user_no);
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -125,7 +125,7 @@ public class StudentController {
 
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("vo");
-		int user_no = Integer.parseInt(vo.user_no);
+		int user_no = vo.user_no;
 		ArrayList<HomeWorkVO> hwList = studentService.getHomeworkDetail(user_no, homework_no);
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -146,7 +146,7 @@ public class StudentController {
 
 		HttpSession session = request.getSession();
 		UserVO Uservo = (UserVO) session.getAttribute("vo");
-		int user_no = Integer.parseInt(Uservo.user_no);
+		int user_no = Uservo.user_no;
 
 		ArrayList<StudyGroupVO> list = studentService.groupList(user_no, sg_no);
 
@@ -174,7 +174,7 @@ public class StudentController {
 
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("vo");
-		int user_no = Integer.parseInt(vo.user_no);
+		int user_no = vo.user_no;
 
 		ArrayList<StudyGroupVO> sgList = studentService.groupApplyList(user_no);
 
@@ -189,7 +189,7 @@ public class StudentController {
 
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("vo");
-		int user_no = Integer.parseInt(vo.user_no);
+		int user_no = vo.user_no;
 
 		ArrayList<StudyGroupVO> sgList = studentService.groupApplyList(user_no);
 		System.out.println(sgList.toString());
@@ -226,7 +226,7 @@ public class StudentController {
 	public String homeworkTable(Model model, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("vo");
-		int user_no = Integer.parseInt(vo.user_no);
+		int user_no =vo.user_no;
 		ArrayList<HomeWorkVO> hwList = studentService.getHomeworkList(user_no);
 
 		model.addAttribute("user_name", vo.user_name);
@@ -289,7 +289,7 @@ public class StudentController {
 
 		HttpSession session = request.getSession();
 		UserVO Uservo = (UserVO) session.getAttribute("vo");
-		int user_no = Integer.parseInt(Uservo.user_no);
+		int user_no = Uservo.user_no;
 
 		ArrayList<StudyGroupVO> list = studentService.groupList(user_no, sg_no);
 		ArrayList<ProgressVO> progressList = studentService.allStudentPointList(sg_no);

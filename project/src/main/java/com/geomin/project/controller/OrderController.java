@@ -107,7 +107,7 @@ public class OrderController {
 		
     	HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("vo");
-		int user_no = Integer.parseInt(vo.user_no);
+		int user_no = vo.user_no;
 		
 		ArrayList<CartVO> cartList = cartService.getListCart(user_no);
 		model.addAttribute("cartList", cartList);

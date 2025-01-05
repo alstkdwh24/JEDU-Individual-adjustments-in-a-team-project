@@ -1,4 +1,5 @@
 package com.geomin.project.GameService;
+import com.geomin.project.command.PurchaseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -18,4 +19,6 @@ public class GameServiceImpl implements GameService {
     public GameContentVO findGameContentById(Integer gameNo) {
         return gameMapper.findGameContentById(gameNo);
     }
+
+
 }

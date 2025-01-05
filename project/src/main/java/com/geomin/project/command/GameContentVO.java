@@ -28,6 +28,9 @@ public class GameContentVO {
 	private Integer game_count;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String game_sub_endDate;
+	private String game_sub_startDate;
+
+	private String game_regdate;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String game_sub_regDate;
@@ -47,10 +50,13 @@ public class GameContentVO {
 		this.game_sub_regDate=game_sub_regDate;
 	}
 
-	public String getGame_sub_regDate_two(){
-		String [] game_regDate =game_sub_regDate.split(" ");
-		String game_sub_regDate_two=game_regDate[0];
+	public String game_sub_regDate_two() {
+		if (game_sub_regDate != null && game_sub_regDate.length() >= 10) {
+
+			String game_sub_regDate_two= game_sub_regDate.substring(0, 10);
 		return game_sub_regDate_two;
+		}
+		return null; // 유효하지 않은 경우 null 반환
 	}
 
 

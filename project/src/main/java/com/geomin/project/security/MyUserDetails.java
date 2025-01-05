@@ -14,7 +14,7 @@ public class MyUserDetails implements UserDetails{
 
 	private final UserVO userVO;
 	
-	
+
 	public MyUserDetails(UserVO vo) {
 		this.userVO = vo;
 	}
@@ -54,6 +54,9 @@ public class MyUserDetails implements UserDetails{
 		return userVO.getUser_id();
 	}
 
+//	public Integer getUser_no(){
+//		return userVO.getUser_no();
+//	}
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
@@ -74,6 +77,8 @@ public class MyUserDetails implements UserDetails{
 		return true;
 	}
 
-	
-	
+
+	public Integer getUser_no() {
+		return userVO.user_no;
+	}
 }

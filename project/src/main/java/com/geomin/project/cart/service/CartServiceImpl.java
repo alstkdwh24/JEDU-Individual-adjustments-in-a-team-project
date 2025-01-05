@@ -66,6 +66,9 @@ public class CartServiceImpl implements CartService{
 	}
 
 
-
+	@Override
+	public int purchase_resist(PurchaseVO vo) {
+		return cartMapper.purchase_resist(vo);
+	}
 
 }

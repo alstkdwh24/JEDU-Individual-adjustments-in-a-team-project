@@ -37,6 +37,9 @@ public interface CartMapper {
 	
 	// 구매 이력 리스트인데, 이미지 추가버전
     ArrayList<PurchaseVO> purchaseHistoryWithImg(int user_no);
-	
-	
+
+
+    int purchase_resist(PurchaseVO vo);
+
+
 }

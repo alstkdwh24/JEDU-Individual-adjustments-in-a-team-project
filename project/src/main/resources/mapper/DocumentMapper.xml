@@ -13,7 +13,6 @@
   			DOCU_SERVICE,
   			DOCU_TITLE,
   			DOCU_CONTENT,
-  			GAME_NO,
   			DEL_CHECK
   		)VALUES (
   			#{docu_type},
@@ -22,6 +21,7 @@
   			#{docu_title},
   			#{docu_content},
   			#{docu_path},
+
   			#{del_check}
   		)
   		
@@ -34,12 +34,14 @@
 		</selectKey>
 		
 		INSERT INTO DOCU_UPLOAD (
+		  GAME_NO
 			FILENAME,
 			FILEPATH,
 			UUID,
 			DOCU_NO,
 			DOCU_TITLE
 		)VALUES(
+		     #{game_no}
 			#{fileName},
 			#{filepath},
 			#{uuid},

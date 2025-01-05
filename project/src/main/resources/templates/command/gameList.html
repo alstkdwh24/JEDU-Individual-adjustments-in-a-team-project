@@ -59,6 +59,10 @@
                                         <span>학습기간 : </span>
                                     </div>
                                 </div>
+                                <input type="hidden" id="game_title">
+                                <input type="hidden" id="game_content">
+                                <input type="hidden" id="game_no">
+                                    <input type="hidden" id="user_no" th:value="${user_no}">
                                 <div id="gameContentInfo__form__sub__two">
 
                                     <button id="button" type="submit">장바구니로 이동</button>
@@ -180,7 +184,7 @@
                                 <input type="hidden" th:value="${vo.game_sub_endDate}" class="game_sub_endDate">
                                 <input type="hidden" th:value="${vo.game_discount_price}" class="game_discount_price">
                                 <input type="hidden" th:value="${vo.game_content}" class="game_content">
-
+                                <input type="hidden" th:value="${vo.game_no}" class="game_no">
 
                             </div>
                         </div>
